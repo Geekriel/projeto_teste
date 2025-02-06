@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Texto para Libras</title>
+</head>
+<body>
+
+    <h2>Digite um texto para ser traduzido para Libras:</h2>
+    <input type="text" id="texto" placeholder="Digite algo">
+    <button onclick="traduzirParaLibras()">Traduzir</button>
+
+    <div id="traducao" class="vlibras"></div>
+
+    <!-- Importando VLibras -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget();
+
+        function traduzirParaLibras() {
+            const texto = document.getElementById("texto").value;
+            const traducaoDiv = document.getElementById("traducao");
+
+            if (texto.trim() === "") {
+                alert("Digite um texto antes de traduzir.");
+                return;
+            }
+
+            // Atualiza o conteúdo dentro da div com a classe reconhecida pelo VLibras
+            traducaoDiv.innerText = texto;
+        }
+    </script>
+
+</body>
+</html>
